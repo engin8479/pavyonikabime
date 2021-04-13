@@ -16,15 +16,16 @@ let engin = args[1]
 .replace(`dakika`, `m`)
 .replace(`saat`, `h`)
 .replace(`gün`, `d`);
+setTimeout(function() {
+    message.guild.members.cache.get(enginar.id).roles.remove(muterol);
+  }, sayıyo(engin));
 const embed = new discord.MessageEmbed()
 .setTitle('Yeni bir mute işlemi!')
 .setDescription(`<@${message.author.id}> adlı kişi <@${enginar.id}> adlı kişiyi muteledi! \n \n Sebep: ${sebep} \n \n Süre: ${engin}!`)
 client.channels.cache.get(log).send(embed)
 message.guild.members.cache.get(enginar.id).roles.add(muterol)
 return message.channel.send('Kişi başarı ile mutelendi!')
-setTimeout(function() {
-    message.guild.members.cache.get(enginar.id).roles.remove(muterol);
-  }, sayıyo(engin));
+
 
 };
 exports.conf = {
