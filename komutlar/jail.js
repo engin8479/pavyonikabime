@@ -23,11 +23,6 @@ if(!sebep) return message.channel.send('Lütfen jail sebebini belirtin!')
 
 message.guild.members.cache.get(engin.id).roles.add(rol)
 db.set(`jaillikişi_${message.guild.id}.${engin.id}`, engin.id)
-const embed = new discord.MessageEmbed()
-.setTitle('Bir jail gördüm!')
-.setDescription(`<@${message.author.id}> adlı kişi <@${engin.id}> adlı kişiyi jaile attı! \n Süre: ${süre} \n Sebep: ${sebep}`)
-client.channels.cache.get(log).send(embed)
-message.author.send('Kişi başarı ile jaillendi!')
 setTimeout(function() {
    message.guild.members.cache.get(engin.id).roles.remove(rol);
     db.delete(`jaillikişi_${message.guild.id}.${engin.id}`, engin.id)
@@ -36,6 +31,11 @@ setTimeout(function() {
     .setDescription(`<@${message.author.id}> adlı kişinin <@${engin.id}> adlı kişiye attığı jailin süresi bitti! \n Süre: ${süre}`)
     client.channels.cache.get(log).send(embedd)
   }, ms(süre));
+const embed = new discord.MessageEmbed()
+.setTitle('Bir jail gördüm!')
+.setDescription(`<@${message.author.id}> adlı kişi <@${engin.id}> adlı kişiyi jaile attı! \n Süre: ${süre} \n Sebep: ${sebep}`)
+client.channels.cache.get(log).send(embed)
+message.author.send('Kişi başarı ile jaillendi!')
 }
 exports.conf = {
     enabled: true, 
